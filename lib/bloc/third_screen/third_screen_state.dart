@@ -9,6 +9,8 @@ class Initial extends ThirdScreenState {}
 
 class Loading extends ThirdScreenState {}
 
+class Empty extends ThirdScreenState {}
+
 class Success extends ThirdScreenState {
   final List<UserResponse>? data;
   Success({

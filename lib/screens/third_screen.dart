@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import 'package:suitmedia_km_test/widgets/user_item.dart';
+import 'package:suitmedia_km_test/models/user_response.dart';
+import 'package:suitmedia_km_test/widgets/custom_app_bar.dart';
+import 'package:suitmedia_km_test/widgets/loading_animation.dart';
+import 'package:suitmedia_km_test/bloc/username/username_bloc.dart';
+import 'package:suitmedia_km_test/bloc/username/username_event.dart';
 import 'package:suitmedia_km_test/bloc/third_screen/third_screen_bloc.dart';
 import 'package:suitmedia_km_test/bloc/third_screen/third_screen_event.dart';
 import 'package:suitmedia_km_test/bloc/third_screen/third_screen_state.dart';
-import 'package:suitmedia_km_test/bloc/username/username_bloc.dart';
-import 'package:suitmedia_km_test/bloc/username/username_event.dart';
-import 'package:suitmedia_km_test/models/user_response.dart';
-import 'package:suitmedia_km_test/styles/colors.dart';
-import 'package:suitmedia_km_test/widgets/custom_app_bar.dart';
-import 'package:suitmedia_km_test/widgets/loading_animation.dart';
-import 'package:suitmedia_km_test/widgets/user_item.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({super.key});
@@ -84,6 +82,17 @@ class _ThirdScreenState extends State<ThirdScreen> {
             }
           }
 
+          if (state is Error) {
+            return buildErrorWidget(
+              message:
+                  state.message ?? "There's something Error on your request.",
+            );
+          }
+
+          if (state is Empty) {
+            return buildEmptyWidget();
+          }
+
           return RefreshIndicator(
             onRefresh: refreshPage,
             child: SingleChildScrollView(
@@ -104,11 +113,11 @@ class _ThirdScreenState extends State<ThirdScreen> {
                       );
                     },
                   ),
-
-                  if (!isFetchAll) const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12),
-                    child: LoadingAnimation(),
-                  )
+                  if (!isFetchAll)
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: LoadingAnimation(),
+                    )
                 ],
               ),
             ),
@@ -130,6 +139,48 @@ class _ThirdScreenState extends State<ThirdScreen> {
   Future<void> refreshPage() async {
     users.clear();
     pageData = 1;
+    isFetchAll = false;
     thirdScreenBloc.add(FetchData(page: pageData));
   }
+
+  Widget buildErrorWidget({required String message}) => RefreshIndicator(
+        onRefresh: refreshPage,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - 100,
+            child: Center(
+              child: Text(
+                message,
+              ),
+            ),
+          ),
+        ),
+      );
+
+  Widget buildEmptyWidget() => RefreshIndicator(
+        onRefresh: refreshPage,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - 100,
+            child: const Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.hourglass_empty,
+                    size: 80,
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Data is Empty',
+                    style: TextStyle(fontSize: 20),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
 }

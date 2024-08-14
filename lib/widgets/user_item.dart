@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:suitmedia_km_test/models/user_response.dart';
 import 'package:suitmedia_km_test/styles/colors.dart';
+import 'package:suitmedia_km_test/models/user_response.dart';
 
 class UserItem extends StatelessWidget {
   final UserResponse user;

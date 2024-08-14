@@ -26,24 +26,4 @@ class UserResponse {
   String toString() {
     return 'UserResponse(id: $id, email: $email, firstName: $firstName, lastName: $lastName, avatar: $avatar)';
   }
-
-  @override
-  bool operator ==(covariant UserResponse other) {
-    if (identical(this, other)) return true;
-
-    return other.id == id &&
-        other.email == email &&
-        other.firstName == firstName &&
-        other.lastName == lastName &&
-        other.avatar == avatar;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        email.hashCode ^
-        firstName.hashCode ^
-        lastName.hashCode ^
-        avatar.hashCode;
-  }
 }

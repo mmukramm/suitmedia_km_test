@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:suitmedia_km_test/widgets/gradient_background.dart';
 
-import 'package:suitmedia_km_test/screens/second_screen.dart';
 import 'package:suitmedia_km_test/widgets/custom_input.dart';
+import 'package:suitmedia_km_test/screens/second_screen.dart';
+import 'package:suitmedia_km_test/widgets/gradient_background.dart';
 import 'package:suitmedia_km_test/bloc/username/username_bloc.dart';
 
 class FirstScreen extends StatefulWidget {

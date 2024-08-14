@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:suitmedia_km_test/models/user_response.dart';
 
 class ApiResponse {
@@ -38,23 +36,5 @@ class ApiResponse {
     return 'ApiResponse(page: $page, perPage: $perPage, total: $total, totalPages: $totalPages, data: $data)';
   }
 
-  @override
-  bool operator ==(covariant ApiResponse other) {
-    if (identical(this, other)) return true;
-
-    return other.page == page &&
-        other.perPage == perPage &&
-        other.total == total &&
-        other.totalPages == totalPages &&
-        listEquals(other.data, data);
-  }
-
-  @override
-  int get hashCode {
-    return page.hashCode ^
-        perPage.hashCode ^
-        total.hashCode ^
-        totalPages.hashCode ^
-        data.hashCode;
-  }
+  
 }

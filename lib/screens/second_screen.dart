@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:suitmedia_km_test/bloc/third_screen/third_screen_bloc.dart';
-import 'package:suitmedia_km_test/bloc/username/username_bloc.dart';
-import 'package:suitmedia_km_test/screens/third_screen.dart';
-import 'package:suitmedia_km_test/utils/dio_client.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:suitmedia_km_test/utils/dio_client.dart';
+import 'package:suitmedia_km_test/screens/third_screen.dart';
 import 'package:suitmedia_km_test/widgets/custom_app_bar.dart';
+import 'package:suitmedia_km_test/bloc/username/username_bloc.dart';
+import 'package:suitmedia_km_test/bloc/third_screen/third_screen_bloc.dart';
+
 
 class SecondScreen extends StatelessWidget {
   final String username;
