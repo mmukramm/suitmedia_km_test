@@ -1,3 +1,3 @@
-# suitmedia_km_test
+# Suitmedia KM Test
 
-A new Flutter project.
+Project for MSIB Batch 7 Selection at Suitmedia
